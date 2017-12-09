@@ -1,5 +1,6 @@
 package com.codegen.security;
 
+import com.codegen.exceptions.MissTokenException;
 import com.codegen.security.models.JwtAuthorizationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -17,11 +18,10 @@ public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessi
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
+    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException{
         String header = httpServletRequest.getHeader("Authorization");
         if (header==null || !header.startsWith("Token ")){
-            //TODO: create custom exception
-            throw new RuntimeException("JWT Token is missing");
+            throw new MissTokenException("JWT Token is missing");
         }
         String authorizationToken = header.substring(6);
         JwtAuthorizationToken token = new JwtAuthorizationToken(authorizationToken);

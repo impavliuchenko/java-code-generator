@@ -1,5 +1,6 @@
 package com.codegen.security;
 
+import com.codegen.exceptions.InvalidTokenException;
 import com.codegen.security.models.JwtAuthorizationToken;
 import com.codegen.security.models.JwtUser;
 import com.codegen.security.models.JwtUserDetails;
@@ -31,8 +32,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         String token = jwtAuthorizationToken.getToken();
         JwtUser jwtUser = validator.validate(token);
         if (jwtUser == null){
-            //:TODO create custom Exception
-            throw new RuntimeException("JWT Token is invalid");
+            throw new InvalidTokenException("JWT Token is invalid");
         }
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList(jwtUser.getRole());
