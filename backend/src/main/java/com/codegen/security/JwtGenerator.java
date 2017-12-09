@@ -1,0 +1,25 @@
+package com.codegen.security;
+
+import com.codegen.security.models.JwtUser;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
+
+@Component
+public class JwtGenerator {
+
+
+    //will return the JSON web token
+    public String generate(JwtUser jwtUser) {
+
+        Claims claims = Jwts.claims().setSubject(jwtUser.getUserName());
+        claims.put("userId", String.valueOf(jwtUser.getId()));
+        claims.put("role", jwtUser.getRole());
+
+        return Jwts.builder().setClaims(claims)
+                .signWith(SignatureAlgorithm.HS512, "codegen")
+                .compact(); //make not so long token
+
+    }
+}
