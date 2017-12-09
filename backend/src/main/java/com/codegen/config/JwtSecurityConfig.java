@@ -56,7 +56,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter{
                 .exceptionHandling()
                 .authenticationEntryPoint(entryPoint)
                 .and()
-                //don't make ny session statefull:
+                //don't make ny session stateful:
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(authenticationConfifureFilter(), UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
