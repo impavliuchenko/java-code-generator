@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import {CarService} from './app.service';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import {AppRoutingModule} from "./app-routing.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [CarService],
   bootstrap: [AppComponent]

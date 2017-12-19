@@ -7,16 +7,5 @@ import {CarService} from './app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'app';
-  cars = [];
-
   constructor (private carService: CarService){ }
-
-  onClickButton(){
-    this.carService.getCars()
-      .subscribe((response) => {
-        this.cars = response.json();
-        console.log(response);
-      });
-  }
 }

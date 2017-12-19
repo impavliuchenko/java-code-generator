@@ -1,6 +1,6 @@
 {
   "/api" :{
-  "target" : "https://java-code-generator.herokuapp.com/",
-  "secure" : false
+    "target" : "https://java-code-generator.herokuapp.com",
+    "secure" : false
   }
 }
