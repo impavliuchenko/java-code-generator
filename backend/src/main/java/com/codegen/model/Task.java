@@ -1,4 +1,4 @@
-package com.codegen.entities;
+package com.codegen.model;
 
 import lombok.*;
 import javax.persistence.*;
@@ -8,14 +8,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TransitionLine {
+public class Task {
     @Id
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private Block blockOut;
+    private String content;
 
     @ManyToOne
-    private Block blockIn;
+    private Block block;
+
+    @ManyToOne
+    private TaskType taskType;
 }

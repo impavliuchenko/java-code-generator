@@ -1,7 +1,7 @@
-package com.codegen.controllers;
+package com.codegen.controller;
 
-import com.codegen.entities.User;
-import com.codegen.services.UserService;
+import com.codegen.model.User;
+import com.codegen.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +13,10 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
 
     @GetMapping
     public List<User> getUsers(){
-        return userService.getAllUsers();
+        return userServiceImpl.getAllUsers();
     }
 }

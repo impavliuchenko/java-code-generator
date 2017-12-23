@@ -71,6 +71,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>23.5-jre</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.codegen</groupId>
 			<artifactId>frontend</artifactId>
 			<version>${project.version}</version>

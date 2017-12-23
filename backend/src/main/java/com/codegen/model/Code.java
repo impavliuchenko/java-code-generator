@@ -1,4 +1,4 @@
-package com.codegen.entities;
+package com.codegen.model;
 
 import lombok.*;
 

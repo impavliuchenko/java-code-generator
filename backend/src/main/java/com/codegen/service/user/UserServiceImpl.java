@@ -1,8 +1,7 @@
-package com.codegen.services;
+package com.codegen.service.user;
 
-import com.codegen.entities.Role;
-import com.codegen.entities.User;
-import com.codegen.repositories.UserRepository;
+import com.codegen.model.User;
+import com.codegen.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,30 +15,26 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
 
-    //test
-    @PostConstruct
-    public void init(){
-        userRepository.findByUsername("user").ifPresent(user -> {
-            user.setPassword(new BCryptPasswordEncoder().encode("pass"));
-            userRepository.save(user);
-        });
-    }
-
     @Override
     public UserDetails loadUserByUsername(@NonNull String username) throws UsernameNotFoundException {
-
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("no user with username: " + username));
     }
 
+    @Override
     public List<User> getAllUsers(){
         List<User> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
         return users;
+    }
+
+    @Override
+    public Optional<User> findById(@NonNull Long id) {
+        return userRepository.findById(id);
     }
 }

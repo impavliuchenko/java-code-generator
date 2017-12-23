@@ -1,4 +1,4 @@
-package com.codegen.entities;
+package com.codegen.model;
 
 import lombok.*;
 import javax.persistence.*;
@@ -9,13 +9,13 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TaskType {
+public class DiagramType {
     @Id
     @GeneratedValue
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "taskType", fetch = FetchType.LAZY)
-    private Set<Task> tasks;
+    @OneToMany(mappedBy = "diagramType", fetch = FetchType.LAZY)
+    private Set<Diagram> diagrams;
 }

@@ -1,4 +1,4 @@
-package com.codegen.controllers;
+package com.codegen.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
