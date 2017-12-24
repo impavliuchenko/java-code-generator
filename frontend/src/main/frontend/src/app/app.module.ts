@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {CarService} from './app.service';
 import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
-import { LoginComponent } from './auth/login/login.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthModule} from "./auth/auth.module";
 import {SystemModule} from "./system/system.module";
@@ -19,7 +17,6 @@ import {SystemModule} from "./system/system.module";
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
     AuthModule,
     SystemModule,
     AppRoutingModule
