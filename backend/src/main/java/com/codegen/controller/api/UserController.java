@@ -1,4 +1,4 @@
-package com.codegen.controller;
+package com.codegen.controller.api;
 
 import com.codegen.model.User;
 import com.codegen.service.user.UserServiceImpl;
