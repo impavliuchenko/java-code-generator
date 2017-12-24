@@ -9,19 +9,20 @@ import {FormsModule} from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthModule} from "./auth/auth.module";
+import {SystemModule} from "./system/system.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule,
-    AuthModule
+    AuthModule,
+    SystemModule,
+    AppRoutingModule
   ],
   providers: [CarService],
   bootstrap: [AppComponent]
