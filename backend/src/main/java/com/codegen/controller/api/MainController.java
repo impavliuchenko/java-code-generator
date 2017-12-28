@@ -56,7 +56,7 @@ public class MainController {
             if (bCryptPasswordEncoder.matches(userLoginProjection.getPassword(), user.getPassword())) {
                 response.setHeader(tokenName, tokenHandler.generateAccessToken(user.getId(), LocalDateTime.now().plusDays(14)));
                 Map<String, Object> userInfo = new HashMap<>();
-                userInfo.put("email", user.getUsername());
+                userInfo.put("nickName", user.getNickName());
                 userInfo.put("name", user.getName());
                 userInfo.put("roles",
                         user.getAuthorities()
