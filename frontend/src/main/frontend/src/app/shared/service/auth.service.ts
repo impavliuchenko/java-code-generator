@@ -23,9 +23,13 @@ export class AuthService {
     this.isLoggedIn = false;
   }
 
-  onLogin(user: User) : Observable<Response>{
-    const  data = user;
-    return this.http.post('http://localhost:4200/api/login', data);
+  onLogin(user: User) : Observable<Response> {
+    return this.http.post('http://localhost:4200/api/login', user);
+  }
+
+  onRegistration(user: User) : Observable<Response> {
+    console.log(user);
+    return this.http.post('http://localhost:4200/api/registration', user);
   }
 
   decodeOptions(opt: string) {

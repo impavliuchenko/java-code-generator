@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(statelessAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/api/token").permitAll()
+                .antMatchers("/api/registration").permitAll()
                 .antMatchers("/api/login").permitAll()//these urls are open
                 .anyRequest().authenticated()//these require authentication
                 .and()

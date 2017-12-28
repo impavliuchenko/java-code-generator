@@ -82,4 +82,5 @@ public class MainController {
     public ResponseEntity registration(@RequestBody User user) {
         return ResponseEntity.ok(userService.saveUser(user));
     }
+
 }
