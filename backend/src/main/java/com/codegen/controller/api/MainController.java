@@ -76,4 +76,10 @@ public class MainController {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(message);
     }
+
+    @PostMapping("/registration")
+    @ResponseBody
+    public ResponseEntity registration(@RequestBody User user) {
+        return ResponseEntity.ok(userService.saveUser(user));
+    }
 }

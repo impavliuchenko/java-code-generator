@@ -27,14 +27,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers(){
-        List<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(users::add);
-        return users;
+    public Optional<User> findById(@NonNull Long id) {
+        return userRepository.findById(id);
     }
 
     @Override
-    public Optional<User> findById(@NonNull Long id) {
-        return userRepository.findById(id);
+    public User saveUser(@NonNull User user) {
+        System.out.println(user);
+        return userRepository.save(user);
     }
 }
