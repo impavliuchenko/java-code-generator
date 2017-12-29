@@ -20,8 +20,6 @@ public class User implements UserDetails{
     private String password;
     @Column(nullable = false)
     private String name;
-    @Column(unique = true, nullable = false)
-    private String nickName;
     private Date dateBirthday;
 
     private boolean accountNonExpired;

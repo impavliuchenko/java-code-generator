@@ -3,12 +3,13 @@ import {Response} from "@angular/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../shared/service/auth.service";
 import {User} from "../../shared/model/user.model";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -16,15 +17,27 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+
+    let username: string = null;
+    let password: string = null;
+
+    this.route.queryParams.subscribe((params: Params) => {
+      if (!isNullOrUndefined(params['username'])) {
+          username = params['username'];
+          password = params['password'];
+      }
+    });
+
     this.authService.logOut();
     window.localStorage.clear();
     this.form = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators. required, Validators.minLength(4)])
+      'email': new FormControl(username, [Validators.required, Validators.email]),
+      'password': new FormControl(password, [Validators. required, Validators.minLength(4)])
     });
   }
 
