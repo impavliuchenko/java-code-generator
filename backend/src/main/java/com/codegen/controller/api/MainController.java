@@ -1,6 +1,7 @@
 package com.codegen.controller.api;
 
 import com.codegen.controller.projection.UserLoginProjection;
+import com.codegen.exception.EmailAlreadyExistsException;
 import com.codegen.model.User;
 import com.codegen.service.user.UserService;
 import com.codegen.util.security.TokenHandler;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -77,9 +79,28 @@ public class MainController {
     }
 
     @PostMapping("/registration")
-    @ResponseBody
     public ResponseEntity registration(@RequestBody User user) {
-        return ResponseEntity.ok(userService.saveUser(user));
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        try {
+            userService.saveUser(user);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch(Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Collections.singletonMap("message", e.getMessage()));
+        }
+    }
+
+    @PostMapping("registration/checkEmail")
+    public ResponseEntity checkEmail(@RequestParam String email) {
+        try {
+            userService.checkEmail(email);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (EmailAlreadyExistsException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Collections.singletonMap("message", e.getMessage()));
+        }
     }
 
 }

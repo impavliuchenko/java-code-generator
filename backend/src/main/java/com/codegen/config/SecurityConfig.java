@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/token").permitAll()
                 .antMatchers("/api/registration").permitAll()
+                .antMatchers("/api/registration/checkEmail").permitAll()
                 .antMatchers("/api/login").permitAll()//these urls are open
                 .anyRequest().authenticated()//these require authentication
                 .and()
