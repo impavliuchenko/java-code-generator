@@ -12,8 +12,11 @@
       formControlName="username"
     >
     <span class="form-help-text" *ngIf="form.get('username').invalid && form.get('username').touched">
-      <span *ngIf="form.get('username')['errors']['required']">Логин не может быть пустым</span>
-      <span *ngIf="form.get('username')['errors']['email'] && !form.get('username')['errors']['required']">Введите правильный логин</span>
+      <span *ngIf="form.get('username')['errors']['required']">Email не может быть пустым</span>
+      <span *ngIf="form.get('username')['errors']['email'] && !form.get('username')['errors']['required']">Введите правильный email</span>
+      <span *ngIf="!form.get('username')['errors']['required'] &&
+                   !form.get('username')['errors']['email'] &&
+                   form.get('username')['errors']['forbiddenEmail']">Email уже занят</span>
     </span>
   </div>
 

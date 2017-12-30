@@ -91,7 +91,7 @@ public class MainController {
         }
     }
 
-    @PostMapping("registration/checkEmail")
+    @PostMapping("/registration/checkEmail")
     public ResponseEntity checkEmail(@RequestParam String email) {
         try {
             userService.checkEmail(email);
