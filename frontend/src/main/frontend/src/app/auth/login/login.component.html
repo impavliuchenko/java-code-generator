@@ -1,4 +1,4 @@
-<p class="text-xs-center">Войдите для работы</p>
+<p class="text-xs-center">Log in for working</p>
 
 <div class="alert alert-{{message.type}}" *ngIf="message.text">{{message.text}}</div>
 
@@ -15,13 +15,13 @@
       formControlName="email"
     >
     <span class="form-help-text" *ngIf="form.get('email').invalid && form.get('email').touched">
-      <span *ngIf="form.get('email')['errors']['required']">Логин не может быть пустым</span>
-      <span *ngIf="form.get('email')['errors']['email'] && !form.get('email')['errors']['required']">Введите правильный логин</span>
+      <span *ngIf="form.get('email')['errors']['required']">Login can not be empty</span>
+      <span *ngIf="form.get('email')['errors']['email'] && !form.get('email')['errors']['required']">Enter the correct email</span>
     </span>
   </div>
 
   <div class="form-group" [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
-    <label for="password">Пароль</label>
+    <label for="password">Password</label>
     <input
       type="password"
       class="form-control underlined"
@@ -30,19 +30,19 @@
       formControlName="password"
     >
     <span class="form-help-text" *ngIf="form.get('password').invalid && form.get('password').touched">
-      <span *ngIf="form.get('password')['errors']['required']">Пароль не может быть пустым</span>
+      <span *ngIf="form.get('password')['errors']['required']">Password can not be empty</span>
       <span *ngIf="form.get('password')['errors']['minlength'] && !form.get('password')['errors']['required']">
-        Пароль не может быть меньше {{form.get('password')['errors']['minlength']['requiredLength']}} символов.
-        Сейчас {{form.get('password')['errors']['minlength']['actualLength']}}.
+        Password can not be empty less thanе {{form.get('password')['errors']['minlength']['requiredLength']}} symbols.
+        Now: {{form.get('password')['errors']['minlength']['actualLength']}}.
       </span>
     </span>
   </div>
   <div class="form-group">
-    <button [disabled] = "form.invalid" type="submit" class="btn btn-block btn-primary">Войти</button>
+    <button [disabled] = "form.invalid" type="submit" class="btn btn-block btn-primary">Login</button>
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">
-      Нет аккаунта? <a [routerLink]="'/registration'">Зарегистрироваться!</a>
+      No account? <a [routerLink]="'/registration'">Sing up!</a>
     </p>
   </div>
 </form>
