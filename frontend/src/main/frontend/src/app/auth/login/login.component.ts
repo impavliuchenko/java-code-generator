@@ -55,12 +55,11 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user', JSON.stringify(user));
         this.authService.logIn();
-      },
+        this.router.navigate(["/system"]);
+        },
         (error => {
           this.showMessage('Данные неверные!')
         }));
-    this.router.navigate(["/system"]);
-
   }
 
   toRegistration(){
