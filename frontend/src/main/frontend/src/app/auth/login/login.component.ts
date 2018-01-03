@@ -5,6 +5,7 @@ import {AuthService} from "../../shared/service/auth.service";
 import {User} from "../../shared/model/user.model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
+import {Message} from "../../shared/model/message.model";
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import {isNullOrUndefined} from "util";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  message: Message;
 
   constructor(
     private authService: AuthService,
@@ -22,6 +24,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.message = new Message('danger', '');
 
     let username: string = null;
     let password: string = null;
@@ -35,6 +39,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.logOut();
     window.localStorage.clear();
+
     this.form = new FormGroup({
       'email': new FormControl(username, [Validators.required, Validators.email]),
       'password': new FormControl(password, [Validators. required, Validators.minLength(4)])
@@ -50,12 +55,22 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user', JSON.stringify(user));
         this.authService.logIn();
-      });
+      },
+        (error => {
+          this.showMessage('Данные неверные!')
+        }));
     this.router.navigate(["/system"]);
 
   }
 
   toRegistration(){
     window.localStorage.clear();
+  }
+
+  showMessage(text: string = '', type: string = 'danger') {
+    this.message = new Message(type, text);
+    window.setTimeout(() => {
+      this.message.text = ''
+    }, 3000);
   }
 }
