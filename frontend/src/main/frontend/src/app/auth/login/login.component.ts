@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user', JSON.stringify(user));
         this.authService.logIn();
-        this.router.navigate(["/system"]);
+        this.router.navigate(["/system/diagrams"]);
         },
         (error => {
           this.showMessage('Данные неверные!')

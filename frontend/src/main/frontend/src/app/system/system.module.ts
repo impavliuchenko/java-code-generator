@@ -6,9 +6,10 @@ import {SharedModule} from "../shared/shared.module";
 import { DiagramsComponent } from './diagrams/diagrams.component';
 import { AccountComponent } from './account/account.component';
 import { ExploreComponent } from './explore/explore.component';
+import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [SystemComponent, DiagramsComponent, AccountComponent, ExploreComponent],
+  declarations: [SystemComponent, DiagramsComponent, AccountComponent, ExploreComponent, SidebarComponent],
   imports:[
     CommonModule,
     SystemRoutingModule,
