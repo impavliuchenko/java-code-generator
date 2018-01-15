@@ -58,12 +58,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/system/diagrams"]);
         },
         (error => {
-          this.showMessage('Данные неверные!')
+          this.showMessage('Данные неверные!');
+          this.authService.logOut();
         }));
-  }
-
-  toRegistration(){
-    window.localStorage.clear();
   }
 
   showMessage(text: string = '', type: string = 'danger') {

@@ -32,8 +32,8 @@
     <span class="form-help-text" *ngIf="form.get('password').invalid && form.get('password').touched">
       <span *ngIf="form.get('password')['errors']['required']">Password can not be empty</span>
       <span *ngIf="form.get('password')['errors']['minlength'] && !form.get('password')['errors']['required']">
-        Password can not be empty less thanе {{form.get('password')['errors']['minlength']['requiredLength']}} symbols.
-        Now: {{form.get('password')['errors']['minlength']['actualLength']}}.
+        Password can not be less than {{form.get('password')['errors']['minlength']['requiredLength']}} symbols.
+        Now: {{form.get('password')['errors']['minlength']['actualLength']}}
       </span>
     </span>
   </div>

@@ -7,7 +7,7 @@ import {JwtHelper} from "angular2-jwt";
 @Injectable()
 export class AuthService {
 
-  private isLoggedIn = false;
+  private isLoggedIn = this.checkAuth();
 
   constructor(private http: Http){ }
 
@@ -16,13 +16,16 @@ export class AuthService {
   }
 
   logIn(){
-    this.isLoggedIn = true;
+    window.localStorage.setItem('auth', JSON.stringify(true));
   }
 
   logOut(){
-    this.isLoggedIn = false;
+    window.localStorage.setItem('auth', JSON.stringify(false));
   }
 
+  checkAuth(){
+    return JSON.parse(window.localStorage.getItem('auth'));
+  }
   onLogin(user: User) : Observable<Response> {
     return this.http.post('http://localhost:4200/api/login', user);
   }
