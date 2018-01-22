@@ -5,23 +5,25 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {CarService} from './app.service';
 import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
-import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from "./app-routing.module";
-
+import {AuthModule} from "./auth/auth.module";
+import {SystemModule} from "./system/system.module";
+import {UserService} from "./shared/service/user.service";
+import {AuthService} from "./shared/service/auth.service";
+import {AuthGuardService} from "./shared/service/guard/auth-guard.service";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
+    AuthModule,
+    SystemModule,
     AppRoutingModule
   ],
-  providers: [CarService],
+  providers: [CarService, UserService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
